@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Server Sent Events</title>
+</head>
+<body>
+    <label> Message </label>
+    <p id="message-container"></p>
+    <script>
+        let sse = new EventSource("http://localhost:8080/stream")
+        sse.onmessage = console.log
+        sse.onmessage = (e) => {
+            const element = document.getElementById("message-container")
+            element.textContent = e.data
+        }
+    </script>
+</body>
+</html>
